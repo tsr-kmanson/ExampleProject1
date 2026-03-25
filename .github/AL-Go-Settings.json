@@ -3,5 +3,6 @@
   "type": "PTE",
   "templateUrl": "https://github.com/tsr-kmanson/AL-Go-PTE@main",
   "useProjectDependencies": true,
+  "useCompilerFolder": true,
   "templateSha": "9babc73d85dc04a88a7140870b0b05d8eeee6ce0"
 }
