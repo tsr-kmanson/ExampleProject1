@@ -2,5 +2,6 @@
   "$schema": "https://raw.githubusercontent.com/tsr-kmanson/AL-Go/Actions/dc3e26be0e944a133933216cae88cf8f86263a28/.Modules/settings.schema.json",
   "type": "PTE",
   "templateUrl": "https://github.com/tsr-kmanson/AL-Go-PTE@main",
-  "useProjectDependencies": true
+  "useProjectDependencies": true,
+  "templateSha": "9babc73d85dc04a88a7140870b0b05d8eeee6ce0"
 }
