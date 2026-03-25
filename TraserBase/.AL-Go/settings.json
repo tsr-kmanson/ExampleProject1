@@ -1,5 +1,9 @@
 {
+  "$schema": "https://raw.githubusercontent.com/tsr-kmanson/AL-Go/Actions/58da0c3bdceaae74ea0a6ea49f3a0bddfad24586/.Modules/settings.schema.json",
   "country": "us",
-  "appFolders": [ "TraserBaseApp1", "TraserBeverageInter1" ],
+  "appFolders": [
+    "TraserBaseApp1",
+    "TraserBeverageInter1"
+  ],
   "testFolders": []
 }

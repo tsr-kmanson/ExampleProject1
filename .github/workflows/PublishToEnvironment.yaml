@@ -42,7 +42,7 @@ jobs:
       telemetryScopeJson: ${{ steps.init.outputs.telemetryScopeJson }}
     steps:
       - name: Dump Workflow Information
-        uses: tsr-kmanson/AL-Go/Actions/DumpWorkflowInfo@dc3e26be0e944a133933216cae88cf8f86263a28
+        uses: tsr-kmanson/AL-Go/Actions/DumpWorkflowInfo@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
         with:
           shell: powershell
 
@@ -51,19 +51,19 @@ jobs:
 
       - name: Initialize the workflow
         id: init
-        uses: tsr-kmanson/AL-Go/Actions/WorkflowInitialize@dc3e26be0e944a133933216cae88cf8f86263a28
+        uses: tsr-kmanson/AL-Go/Actions/WorkflowInitialize@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
         with:
           shell: powershell
 
       - name: Read settings
         id: ReadSettings
-        uses: tsr-kmanson/AL-Go/Actions/ReadSettings@dc3e26be0e944a133933216cae88cf8f86263a28
+        uses: tsr-kmanson/AL-Go/Actions/ReadSettings@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
         with:
           shell: powershell
 
       - name: Determine Deployment Environments
         id: DetermineDeploymentEnvironments
-        uses: tsr-kmanson/AL-Go/Actions/DetermineDeploymentEnvironments@dc3e26be0e944a133933216cae88cf8f86263a28
+        uses: tsr-kmanson/AL-Go/Actions/DetermineDeploymentEnvironments@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
@@ -82,7 +82,7 @@ jobs:
 
       - name: Read secrets
         id: ReadSecrets
-        uses: tsr-kmanson/AL-Go/Actions/ReadSecrets@dc3e26be0e944a133933216cae88cf8f86263a28
+        uses: tsr-kmanson/AL-Go/Actions/ReadSecrets@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
         if: steps.DetermineDeploymentEnvironments.outputs.UnknownEnvironment == 1
         with:
           shell: powershell
@@ -114,7 +114,7 @@ jobs:
             Write-Host "No AuthContext provided for $envName, initiating Device Code flow"
             $ALGoHelperPath = "$([System.IO.Path]::GetTempFileName()).ps1"
             $webClient = New-Object System.Net.WebClient
-            $webClient.DownloadFile('https://raw.githubusercontent.com/tsr-kmanson/AL-Go/Actions/dc3e26be0e944a133933216cae88cf8f86263a28/AL-Go-Helper.ps1', $ALGoHelperPath)
+            $webClient.DownloadFile('https://raw.githubusercontent.com/tsr-kmanson/AL-Go/Actions/58da0c3bdceaae74ea0a6ea49f3a0bddfad24586/AL-Go-Helper.ps1', $ALGoHelperPath)
             . $ALGoHelperPath
             DownloadAndImportBcContainerHelper
             $authContext = New-BcAuthContext -includeDeviceLogin -deviceLoginTimeout ([TimeSpan]::FromSeconds(0))
@@ -150,21 +150,21 @@ jobs:
           Add-Content -Encoding UTF8 -Path $env:GITHUB_OUTPUT -Value "envName=$envName"
 
       - name: Read settings
-        uses: tsr-kmanson/AL-Go/Actions/ReadSettings@dc3e26be0e944a133933216cae88cf8f86263a28
+        uses: tsr-kmanson/AL-Go/Actions/ReadSettings@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
         with:
           shell: ${{ matrix.shell }}
           get: type,powerPlatformSolutionFolder
 
       - name: Read secrets
         id: ReadSecrets
-        uses: tsr-kmanson/AL-Go/Actions/ReadSecrets@dc3e26be0e944a133933216cae88cf8f86263a28
+        uses: tsr-kmanson/AL-Go/Actions/ReadSecrets@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
         with:
           shell: ${{ matrix.shell }}
           gitHubSecrets: ${{ toJson(secrets) }}
           getSecrets: '${{ steps.envName.outputs.envName }}-AuthContext,${{ steps.envName.outputs.envName }}_AuthContext,AuthContext'
 
       - name: Get Artifacts for deployment
-        uses: tsr-kmanson/AL-Go/Actions/GetArtifactsForDeployment@dc3e26be0e944a133933216cae88cf8f86263a28
+        uses: tsr-kmanson/AL-Go/Actions/GetArtifactsForDeployment@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
         with:
           shell: ${{ matrix.shell }}
           artifactsVersion: ${{ github.event.inputs.appVersion }}
@@ -173,7 +173,7 @@ jobs:
 
       - name: Deploy to Business Central
         id: Deploy
-        uses: tsr-kmanson/AL-Go/Actions/Deploy@dc3e26be0e944a133933216cae88cf8f86263a28
+        uses: tsr-kmanson/AL-Go/Actions/Deploy@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
         env:
           Secrets: '${{ steps.ReadSecrets.outputs.Secrets }}'
         with:
@@ -186,7 +186,7 @@ jobs:
 
       - name: Deploy to Power Platform
         if: env.type == 'PTE' && env.powerPlatformSolutionFolder != ''
-        uses: tsr-kmanson/AL-Go/Actions/DeployPowerPlatform@dc3e26be0e944a133933216cae88cf8f86263a28
+        uses: tsr-kmanson/AL-Go/Actions/DeployPowerPlatform@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
         env:
           Secrets: '${{ steps.ReadSecrets.outputs.Secrets }}'
         with:
@@ -205,7 +205,7 @@ jobs:
 
       - name: Finalize the workflow
         id: PostProcess
-        uses: tsr-kmanson/AL-Go/Actions/WorkflowPostProcess@dc3e26be0e944a133933216cae88cf8f86263a28
+        uses: tsr-kmanson/AL-Go/Actions/WorkflowPostProcess@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:

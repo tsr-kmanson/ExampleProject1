@@ -31,7 +31,7 @@ jobs:
       telemetryScopeJson: ${{ steps.init.outputs.telemetryScopeJson }}
     steps:
       - name: Dump Workflow Information
-        uses: tsr-kmanson/AL-Go/Actions/DumpWorkflowInfo@dc3e26be0e944a133933216cae88cf8f86263a28
+        uses: tsr-kmanson/AL-Go/Actions/DumpWorkflowInfo@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
         with:
           shell: powershell
 
@@ -42,13 +42,13 @@ jobs:
 
       - name: Initialize the workflow
         id: init
-        uses: tsr-kmanson/AL-Go/Actions/WorkflowInitialize@dc3e26be0e944a133933216cae88cf8f86263a28
+        uses: tsr-kmanson/AL-Go/Actions/WorkflowInitialize@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
         with:
           shell: powershell
 
       - name: Read settings
         id: ReadSettings
-        uses: tsr-kmanson/AL-Go/Actions/ReadSettings@dc3e26be0e944a133933216cae88cf8f86263a28
+        uses: tsr-kmanson/AL-Go/Actions/ReadSettings@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
         with:
           shell: powershell
           get: useGitSubmodules,shortLivedArtifactsRetentionDays
@@ -56,7 +56,7 @@ jobs:
       - name: Read submodules token
         id: ReadSubmodulesToken
         if: env.useGitSubmodules != 'false' && env.useGitSubmodules != ''
-        uses: tsr-kmanson/AL-Go/Actions/ReadSecrets@dc3e26be0e944a133933216cae88cf8f86263a28
+        uses: tsr-kmanson/AL-Go/Actions/ReadSecrets@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
         with:
           shell: powershell
           gitHubSecrets: ${{ toJson(secrets) }}
@@ -78,7 +78,7 @@ jobs:
 
       - name: Determine Projects To Build
         id: determineProjectsToBuild
-        uses: tsr-kmanson/AL-Go/Actions/DetermineProjectsToBuild@dc3e26be0e944a133933216cae88cf8f86263a28
+        uses: tsr-kmanson/AL-Go/Actions/DetermineProjectsToBuild@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
         with:
           shell: powershell
           maxBuildDepth: ${{ env.workflowDepth }}
@@ -159,7 +159,7 @@ jobs:
 
       - name: Finalize the workflow
         id: PostProcess
-        uses: tsr-kmanson/AL-Go/Actions/WorkflowPostProcess@dc3e26be0e944a133933216cae88cf8f86263a28
+        uses: tsr-kmanson/AL-Go/Actions/WorkflowPostProcess@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
