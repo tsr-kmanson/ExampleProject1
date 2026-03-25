@@ -10,7 +10,20 @@
   "help": "",
   "url": "",
   "logo": "",
-  "dependencies": [],
+  "dependencies": [
+    {
+      "id": "08e72a35-20ab-4697-ab78-144f67602250",
+      "name": "TraserBaseApp1",
+      "publisher": "Traser",
+      "version": "1.0.0.0"
+    },
+    {
+      "id": "a689a385-fc48-453c-80de-16cd9a4bb64d",
+      "name": "BeverageBase2",
+      "publisher": "Aptean",
+      "version": "1.0.0.0"
+    }
+  ],
   "screenshots": [],
   "platform": "1.0.0.0",
   "application": "22.0.0.0",

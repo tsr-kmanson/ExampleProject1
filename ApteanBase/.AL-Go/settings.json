@@ -1,5 +1,5 @@
 {
   "country": "us",
-  "appFolders": [],
+  "appFolders": [ "BaseApp1", "BaseApp2", "Base3" ],
   "testFolders": []
 }

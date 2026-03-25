@@ -10,7 +10,20 @@
   "help": "",
   "url": "",
   "logo": "",
-  "dependencies": [],
+  "dependencies": [
+    {
+      "id": "530dd588-c7b3-44c6-9c90-2fc6609f6ef9",
+      "name": "BaseApp1",
+      "publisher": "Aptean",
+      "version": "1.0.0.0"
+    },
+    {
+      "id": "e988b433-0325-4e20-b15d-3eb3b2f7fbd3",
+      "name": "BaseApp2",
+      "publisher": "Aptean",
+      "version": "1.0.0.0"
+    }
+  ],
   "screenshots": [],
   "platform": "1.0.0.0",
   "application": "22.0.0.0",
