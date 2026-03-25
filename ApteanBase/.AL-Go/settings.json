@@ -1,6 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/tsr-kmanson/AL-Go/Actions/d4bdd4c4887f8210c35a49d81b526553c3986163/.Modules/settings.schema.json",
-  "country": "us",
+  "country": "w1",
+  "additionalCountries": [ "de", "fr", "us" ],
   "appFolders": [
     "BaseApp1",
     "BaseApp2",
