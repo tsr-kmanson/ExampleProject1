@@ -30,24 +30,24 @@ jobs:
 
       - name: Initialize the workflow
         id: init
-        uses: tsr-kmanson/AL-Go/Actions/WorkflowInitialize@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/WorkflowInitialize@d4bdd4c4887f8210c35a49d81b526553c3986163
         with:
           shell: powershell
 
       - name: Read settings
-        uses: tsr-kmanson/AL-Go/Actions/ReadSettings@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/ReadSettings@d4bdd4c4887f8210c35a49d81b526553c3986163
         with:
           shell: powershell
 
       - name: Determine ArtifactUrl
         id: determineArtifactUrl
-        uses: tsr-kmanson/AL-Go/Actions/DetermineArtifactUrl@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/DetermineArtifactUrl@d4bdd4c4887f8210c35a49d81b526553c3986163
         with:
           shell: powershell
 
       - name: Determine Deployment Environments
         id: DetermineDeploymentEnvironments
-        uses: tsr-kmanson/AL-Go/Actions/DetermineDeploymentEnvironments@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/DetermineDeploymentEnvironments@d4bdd4c4887f8210c35a49d81b526553c3986163
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
@@ -60,7 +60,7 @@ jobs:
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
 
       - name: Build Reference Documentation
-        uses: tsr-kmanson/AL-Go/Actions/BuildReferenceDocumentation@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/BuildReferenceDocumentation@d4bdd4c4887f8210c35a49d81b526553c3986163
         with:
           shell: powershell
           artifacts: 'latest'
@@ -78,7 +78,7 @@ jobs:
 
       - name: Finalize the workflow
         if: always()
-        uses: tsr-kmanson/AL-Go/Actions/WorkflowPostProcess@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/WorkflowPostProcess@d4bdd4c4887f8210c35a49d81b526553c3986163
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:

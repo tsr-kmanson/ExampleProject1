@@ -51,7 +51,7 @@ jobs:
       trackALAlertsInGitHub: ${{ steps.SetALCodeAnalysisVar.outputs.trackALAlertsInGitHub }}
     steps:
       - name: Dump Workflow Information
-        uses: tsr-kmanson/AL-Go/Actions/DumpWorkflowInfo@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/DumpWorkflowInfo@d4bdd4c4887f8210c35a49d81b526553c3986163
         with:
           shell: powershell
 
@@ -62,13 +62,13 @@ jobs:
 
       - name: Initialize the workflow
         id: init
-        uses: tsr-kmanson/AL-Go/Actions/WorkflowInitialize@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/WorkflowInitialize@d4bdd4c4887f8210c35a49d81b526553c3986163
         with:
           shell: powershell
 
       - name: Read settings
         id: ReadSettings
-        uses: tsr-kmanson/AL-Go/Actions/ReadSettings@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/ReadSettings@d4bdd4c4887f8210c35a49d81b526553c3986163
         with:
           shell: powershell
           get: type,powerPlatformSolutionFolder,useGitSubmodules,trackALAlertsInGitHub
@@ -82,7 +82,7 @@ jobs:
       - name: Read submodules token
         id: ReadSubmodulesToken
         if: env.useGitSubmodules != 'false' && env.useGitSubmodules != ''
-        uses: tsr-kmanson/AL-Go/Actions/ReadSecrets@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/ReadSecrets@d4bdd4c4887f8210c35a49d81b526553c3986163
         with:
           shell: powershell
           gitHubSecrets: ${{ toJson(secrets) }}
@@ -103,7 +103,7 @@ jobs:
 
       - name: Determine Projects To Build
         id: determineProjectsToBuild
-        uses: tsr-kmanson/AL-Go/Actions/DetermineProjectsToBuild@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/DetermineProjectsToBuild@d4bdd4c4887f8210c35a49d81b526553c3986163
         with:
           shell: powershell
           maxBuildDepth: ${{ env.workflowDepth }}
@@ -116,7 +116,7 @@ jobs:
 
       - name: Determine Delivery Target Secrets
         id: DetermineDeliveryTargetSecrets
-        uses: tsr-kmanson/AL-Go/Actions/DetermineDeliveryTargets@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/DetermineDeliveryTargets@d4bdd4c4887f8210c35a49d81b526553c3986163
         with:
           shell: powershell
           projectsJson: '${{ steps.determineProjectsToBuild.outputs.ProjectsJson }}'
@@ -124,7 +124,7 @@ jobs:
 
       - name: Read secrets
         id: ReadSecrets
-        uses: tsr-kmanson/AL-Go/Actions/ReadSecrets@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/ReadSecrets@d4bdd4c4887f8210c35a49d81b526553c3986163
         with:
           shell: powershell
           gitHubSecrets: ${{ toJson(secrets) }}
@@ -132,7 +132,7 @@ jobs:
 
       - name: Determine Delivery Targets
         id: DetermineDeliveryTargets
-        uses: tsr-kmanson/AL-Go/Actions/DetermineDeliveryTargets@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/DetermineDeliveryTargets@d4bdd4c4887f8210c35a49d81b526553c3986163
         env:
           Secrets: '${{ steps.ReadSecrets.outputs.Secrets }}'
         with:
@@ -142,7 +142,7 @@ jobs:
 
       - name: Determine Deployment Environments
         id: DetermineDeploymentEnvironments
-        uses: tsr-kmanson/AL-Go/Actions/DetermineDeploymentEnvironments@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/DetermineDeploymentEnvironments@d4bdd4c4887f8210c35a49d81b526553c3986163
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
@@ -158,21 +158,21 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Read settings
-        uses: tsr-kmanson/AL-Go/Actions/ReadSettings@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/ReadSettings@d4bdd4c4887f8210c35a49d81b526553c3986163
         with:
           shell: powershell
           get: templateUrl
 
       - name: Read secrets
         id: ReadSecrets
-        uses: tsr-kmanson/AL-Go/Actions/ReadSecrets@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/ReadSecrets@d4bdd4c4887f8210c35a49d81b526553c3986163
         with:
           shell: powershell
           gitHubSecrets: ${{ toJson(secrets) }}
           getSecrets: 'ghTokenWorkflow'
 
       - name: Check for updates to AL-Go system files
-        uses: tsr-kmanson/AL-Go/Actions/CheckForUpdates@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/CheckForUpdates@d4bdd4c4887f8210c35a49d81b526553c3986163
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
@@ -276,7 +276,7 @@ jobs:
       - name: Process AL Code Analysis Logs
         id: ProcessALCodeAnalysisLogs
         if: (success() || failure())
-        uses: tsr-kmanson/AL-Go/Actions/ProcessALCodeAnalysisLogs@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/ProcessALCodeAnalysisLogs@d4bdd4c4887f8210c35a49d81b526553c3986163
         with:
           shell: powershell
 
@@ -310,13 +310,13 @@ jobs:
           path: '.artifacts'
 
       - name: Read settings
-        uses: tsr-kmanson/AL-Go/Actions/ReadSettings@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/ReadSettings@d4bdd4c4887f8210c35a49d81b526553c3986163
         with:
           shell: powershell
 
       - name: Determine ArtifactUrl
         id: determineArtifactUrl
-        uses: tsr-kmanson/AL-Go/Actions/DetermineArtifactUrl@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/DetermineArtifactUrl@d4bdd4c4887f8210c35a49d81b526553c3986163
         with:
           shell: powershell
 
@@ -325,7 +325,7 @@ jobs:
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
 
       - name: Build Reference Documentation
-        uses: tsr-kmanson/AL-Go/Actions/BuildReferenceDocumentation@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/BuildReferenceDocumentation@d4bdd4c4887f8210c35a49d81b526553c3986163
         with:
           shell: powershell
           artifacts: '.artifacts'
@@ -366,7 +366,7 @@ jobs:
           path: '.artifacts'
 
       - name: Read settings
-        uses: tsr-kmanson/AL-Go/Actions/ReadSettings@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/ReadSettings@d4bdd4c4887f8210c35a49d81b526553c3986163
         with:
           shell: ${{ matrix.shell }}
           get: type,powerPlatformSolutionFolder
@@ -380,7 +380,7 @@ jobs:
 
       - name: Read secrets
         id: ReadSecrets
-        uses: tsr-kmanson/AL-Go/Actions/ReadSecrets@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/ReadSecrets@d4bdd4c4887f8210c35a49d81b526553c3986163
         with:
           shell: ${{ matrix.shell }}
           gitHubSecrets: ${{ toJson(secrets) }}
@@ -388,7 +388,7 @@ jobs:
 
       - name: Deploy to Business Central
         id: Deploy
-        uses: tsr-kmanson/AL-Go/Actions/Deploy@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/Deploy@d4bdd4c4887f8210c35a49d81b526553c3986163
         env:
           Secrets: '${{ steps.ReadSecrets.outputs.Secrets }}'
         with:
@@ -400,7 +400,7 @@ jobs:
 
       - name: Deploy to Power Platform
         if: env.type == 'PTE' && env.powerPlatformSolutionFolder != ''
-        uses: tsr-kmanson/AL-Go/Actions/DeployPowerPlatform@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/DeployPowerPlatform@d4bdd4c4887f8210c35a49d81b526553c3986163
         env:
           Secrets: '${{ steps.ReadSecrets.outputs.Secrets }}'
         with:
@@ -428,20 +428,20 @@ jobs:
           path: '.artifacts'
 
       - name: Read settings
-        uses: tsr-kmanson/AL-Go/Actions/ReadSettings@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/ReadSettings@d4bdd4c4887f8210c35a49d81b526553c3986163
         with:
           shell: powershell
 
       - name: Read secrets
         id: ReadSecrets
-        uses: tsr-kmanson/AL-Go/Actions/ReadSecrets@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/ReadSecrets@d4bdd4c4887f8210c35a49d81b526553c3986163
         with:
           shell: powershell
           gitHubSecrets: ${{ toJson(secrets) }}
           getSecrets: '${{ matrix.deliveryTarget }}Context'
 
       - name: Deliver
-        uses: tsr-kmanson/AL-Go/Actions/Deliver@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/Deliver@d4bdd4c4887f8210c35a49d81b526553c3986163
         env:
           Secrets: '${{ steps.ReadSecrets.outputs.Secrets }}'
         with:
@@ -461,7 +461,7 @@ jobs:
 
       - name: Finalize the workflow
         id: PostProcess
-        uses: tsr-kmanson/AL-Go/Actions/WorkflowPostProcess@58da0c3bdceaae74ea0a6ea49f3a0bddfad24586
+        uses: tsr-kmanson/AL-Go/Actions/WorkflowPostProcess@d4bdd4c4887f8210c35a49d81b526553c3986163
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:

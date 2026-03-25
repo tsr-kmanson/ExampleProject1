@@ -1,8 +1,8 @@
 {
-  "$schema": "https://raw.githubusercontent.com/tsr-kmanson/AL-Go/Actions/58da0c3bdceaae74ea0a6ea49f3a0bddfad24586/.Modules/settings.schema.json",
+  "$schema": "https://raw.githubusercontent.com/tsr-kmanson/AL-Go/Actions/d4bdd4c4887f8210c35a49d81b526553c3986163/.Modules/settings.schema.json",
   "type": "PTE",
   "templateUrl": "https://github.com/tsr-kmanson/AL-Go-PTE@main",
   "useProjectDependencies": true,
   "useCompilerFolder": true,
-  "templateSha": "305d770e0bbb53585b33b1c58e274a75898eadf4"
+  "templateSha": "31cffadcbc7730628b2795e69e9707ffd3043d67"
 }
